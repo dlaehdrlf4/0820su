@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>캔버스 이미지</title>
+</head>
+<body>
+	<canvas id = "canvas1" width="400" height="400">
+	</canvas>
+</body>
+<script>
+	var canvas1 = document.getElementById("canvas1")
+	// 컨텍스트 변수 만들기 
+	var context1 = canvas1.getContext("2d")
+	// 출력할 이미지 객체 만들기 
+	var image1 = new Image()
+	image1.src="didi/james.jpg"
+	//image1.src="didi/img.jpg"
+	
+	context1.beginPath()
+	//context1.arc(200,200,150,0,2*Math.PI,true)
+	//이 영역만 그림을 그린다.
+	context1.moveTo(200,50)//가운데로 보냈고  기준점을 이동
+	context1.lineTo(350,350) // 선 
+	context1.lineTo(50,350)
+	context1.lineTo(200,50)
+	context1.clip() // 그 영역만 그림을 그린다라고 생각해라 
+	
+	//이미지 파일을 전부 읽어서 메모리에 로드한 후 수행 
+	image1.addEventListener("load",function(){
+		//alert("이미지 로드 성공")
+		context1.drawImage(image1,50,50,300,300)
+	})
+	/*image1.addEventListener("load",function(){
+		//alert("이미지 로드 성공")
+		context1.drawImage(image1,133,133,133,133, 10,10,266,266)
+	})*/
+	//image1.addEventListener("load",function(){
+		//setInterval(func, 2000)	
+	
+	//})
+	
+	var idx = 0
+	var func = function(){ // / % 열 우선으로 할꺼냐 행우선으로 할 꺼냐 결정 
+		context1.drawImage(image1,133 * Math.floor(idx/3), 133 * Math.floor(idx%3), 133,133,10,10,266,266)
+		idx = idx +1
+		idx = idx % 9
+		// if(idx == 9){
+		//	idx = 0
+		//}
+	}
+	
+	
+	
+	
+</script>
+
+</html>
